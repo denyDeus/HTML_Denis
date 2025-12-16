@@ -6,4 +6,4 @@ mydb = mysql.connector.connect(
     passwd = "@denis_13#"
     )
 
-print(mydb)
+print("Connected successfully")

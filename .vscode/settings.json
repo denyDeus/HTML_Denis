@@ -31,5 +31,8 @@
         "*.jar": "default",
         "*.xlsx": "default",
         "file:/**/*.xlsx": "jupyter-data-wrangler"
-    }
+    },
+    "cSpell.words": [
+        "mydb"
+    ]
 }
