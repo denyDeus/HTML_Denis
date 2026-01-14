@@ -8,6 +8,17 @@
      <link rel="stylesheet" href="style.css">
      <!-- Font Awesome -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
+      <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init({
+            publicKey: "n3sCjP-tDVUGMa5J-",
+        });
+    })();
+    </script>
+    <script src="script.js"></script>
 </head>
 <body>
     <!-- Navbar -->
@@ -31,7 +42,7 @@
             <h2>Water and Climate change Enthusiast</h2>
             <p>A passionate Water and Climate Enthusiast, dedicated to advancing sustainable solutions for environmental resilience and community empowerment. With a strong commitment to climate change awareness and water resources management, she actively bridges the gap between science, innovation, and public engagement.</p>
             <p>Beyond her environmental advocacy, Bertha is a program host, public Speaker, and innovator, known for her ability to communicate complex climate and water issues in a clear, relatable, and impactful way. Her work reflect a deep belief that informed communities are key to building a sustainable future.</p>
-            <a href="#" class="btn">Contact Me</a>
+            <a href="https://wa.me/qr/LJRZJP22C6HII1" target="_blank" class="btn">Contact Me</a>
         </div>
       </section>
 
@@ -45,7 +56,7 @@
             <h1>Bertha Magomere</h1>
             <p>Bertha's work sit at the intersection of climate action, water sustainability, and social innovation. She actively participates in initiatives that promote environmental education, climate resilience, and responsible water use. Through her multidisciplinary approach, she contributes not only ideas but also practical solutions that inspire action at both community and institutional levels.</p>
             <P>Her experience as a program host has strengthened her communication skills, allowing her to engage diverse audiences through dialogue, storytelling, and knowledge sharing. This makes her an effective advocate for climate-conscious decision-making.</P>
-            <a href="#" class="btn" download="">Download Cv</a>
+            <a href="Bertha Magomere CV.pdf" class="btn" download="">Download Cv</a>
         </div>
        </section>
 
@@ -151,7 +162,7 @@
                 </div>
                  <div class="info-box">
                     <i class="fas fa-envelope-open"></i>
-                    <p>berthamagomere@gmail.com</p>
+                    <p>magomerebertha@gmail.com</p>
                 </div>
                  <div class="info-box">
                     <i class="fas fa-map-marker-alt"></i>
@@ -165,10 +176,10 @@
               <!-- Contact Form -->
                <div class="contact-form">
                 <form action="">
-                   <input type="text" placeholder="Your Name">
-                   <input type="email" placeholder="Enter Your Email">
-                   <textarea name="" id="" cols="30" rows="10" placeholder="Write your message here..."></textarea>
-                   <input type="button" value="Send" class="contact-button"> 
+                   <input type="text" id="name" placeholder="Your Name">
+                   <input type="email" id="email" placeholder="Enter Your Email">
+                   <textarea name="message" id="message" cols="30" rows="10" placeholder="Write your message here..."></textarea>
+                   <input type="button" value="Send" class="contact-button" onclick="sendMail()"> 
                 </form>
                </div>
              </div>
