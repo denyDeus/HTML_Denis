@@ -279,54 +279,6 @@ header .navbar a:hover{
     font-size: var(--p-font);
     font-weight: 400;
 }
-/* Awards Section */
-
-.awards-content{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.award-box{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 300px;
-    height: auto;
-    background: #2c3e50;
-    margin: 20px;
-    padding: 40px;
-    text-align: center;
-}
-
-.award-box:hover{
-    background: var(--primary);
-    transition: 0.5s ease;
-}
-
-.award-img{
-    width: 170px;
-    height: 170px;
-}
-
-.award-img img{
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 2px solid var(--primary);
-}
-
-.award-box h2{
-    font-size: var(--h2-font);
-    font-weight: 600;
-    margin: 10px 0;
-}
-
-.award-box p{
-    font-size: var(--p-font);
-    font-weight: 400;
-}
 .contact-content{
     display: flex;
     align-items: center;
