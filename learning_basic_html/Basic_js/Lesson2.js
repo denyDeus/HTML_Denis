@@ -12,9 +12,12 @@ applyDiscount: function(discountPercentage) {
 },
 
 // shorthand way to add a method to an object literal
-getSummary() {
-    return `${this.year} ${this.make} ${this.model} in ${this.color}, priced at $${this.priceUSD} (USD).`;
-},
-
+    getSummary() {
+        return `${this.year} ${this.make} ${this.model} in ${this.color}, priced at $${this.priceUSD} (USD).`;
+    }
 };
 
+console.log(car.getSummary());
+
+car.applyDiscount(10);
+console.log(car.getSummary());
