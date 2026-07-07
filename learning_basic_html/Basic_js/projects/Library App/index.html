@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">JavaScript Assignment</p>
+          <h1>My Library</h1>
+        </div>
+        <button id="newBookBtn" class="primary-btn">New Book</button>
+      </header>
+
+      <section id="formPanel" class="form-panel" aria-hidden="true">
+        <form id="bookForm" class="book-form">
+          <h2>Add a new book</h2>
+          <label>
+            Title
+            <input id="title" name="title" type="text" required />
+          </label>
+          <label>
+            Author
+            <input id="author" name="author" type="text" required />
+          </label>
+          <label>
+            Pages
+            <input id="pages" name="pages" type="number" min="1" required />
+          </label>
+          <label class="checkbox-row">
+            <input id="read" name="read" type="checkbox" />
+            <span>Read already</span>
+          </label>
+          <div class="form-actions">
+            <button type="submit" class="primary-btn">Save Book</button>
+            <button type="button" id="cancelBtn" class="secondary-btn">Cancel</button>
+          </div>
+        </form>
+      </section>
+
+      <section id="libraryGrid" class="library-grid" aria-live="polite"></section>
+    </main>
+
+    <script src="Book.js"></script>
+    <script src="Library.js"></script>
+  </body>
+</html>
