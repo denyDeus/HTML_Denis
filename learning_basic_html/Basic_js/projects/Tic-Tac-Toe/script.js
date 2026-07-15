@@ -47,6 +47,7 @@ const GameController = (() => {
     ];
 
     let gameOver = false;
+    let winner = null;
 
     let currentPlayer = players[0];
 
@@ -117,6 +118,7 @@ const GameController = (() => {
         console.log(Gameboard.getBoard());
 
         if (checkWinner()) {
+            winner = currentPlayer;
             gameOver = true;
 
             console.log(`${currentPlayer.name} wins!`);
@@ -125,18 +127,27 @@ const GameController = (() => {
         }
 
         if (checkTie()) {
+            winner = null;
             gameOver = true;
+
             console.log("It's a tie!");
+
             return;
         }
 
         switchPlayerTurn();
     };
 
+    const isGameOver = () => gameOver;
+
+    const getWinner = () => winner;
+
     return {
         getCurrentPlayer,
         switchPlayerTurn,
-        playRound
+        playRound,
+        isGameOver,
+        getWinner
     };
 
 })();
@@ -157,6 +168,7 @@ const DisplayController = (() => {
             GameController.playRound(Number(square.dataset.index));
 
             render();
+            updateStatus();
 
         });
 
@@ -164,7 +176,7 @@ const DisplayController = (() => {
 
     }
 
-    const boardsquares = document.querySelectorAll("#gameboard div");
+    const boardSquares = document.querySelectorAll("#gameboard div");
 
     const render = () => {
 
@@ -172,12 +184,38 @@ const DisplayController = (() => {
 
         for (let i = 0; i < board.length; i++) {
 
-            squares[i].textContent = board[i];
+            boardSquares[i].textContent = board[i];
+
+        }
+
+    };
+
+    const status = document.querySelector("#status");
+
+    const updateStatus = () => {
+
+        if (!GameController.isGameOver()) {
+
+            const currentPlayer = GameController.getCurrentPlayer();
+
+            status.textContent =
+                `Current Player: ${currentPlayer.name} (${currentPlayer.marker})`;
+
+        } else {
+
+            const winner = GameController.getWinner();
+
+            if (winner) {
+                status.textContent = `🎉 ${winner.name} wins!`;
+            } else {
+                status.textContent = "🤝 It's a tie!";
+            }
 
         }
 
     };
 
     render();
+    updateStatus();
 
 })();
