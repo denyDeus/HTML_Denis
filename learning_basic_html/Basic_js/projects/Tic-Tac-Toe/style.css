@@ -7,3 +7,24 @@
 body{
     font-family:Arial, Helvetica, sans-serif;
 }
+#gameboard{
+    width:300px;
+    height:300px;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    grid-template-rows:repeat(3,1fr);
+
+    border:2px solid black;
+}
+#gameboard div{
+
+    border:1px solid black;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:2rem;
+    cursor:pointer;
+}

@@ -6,12 +6,6 @@ const Player = (name, marker) => {
     };
 };
 
-const player1 = Player("Denis", "X");
-const player2 = Player("John", "O");
-
-console.log(player1);
-console.log(player2);
-
 // Gameboard Module
 const Gameboard = (() => {
 
@@ -43,16 +37,6 @@ const Gameboard = (() => {
     };
 
 })();
-
-console.log(Gameboard.getBoard());
-
-Gameboard.placeMark(0, "X");
-
-console.log(Gameboard.getBoard());
-
-Gameboard.resetBoard();
-
-console.log(Gameboard.getBoard());
 
 // GameController Module
 const GameController = (() => {
@@ -99,7 +83,7 @@ const GameController = (() => {
                 board[a] !== "" &&
                 board[a] === board[b] &&
                 board[a] === board[c]
-            ){
+            ) {
                 return true;
             }
 
@@ -118,12 +102,12 @@ const GameController = (() => {
 
     const playRound = (index) => {
 
-        const success = Gameboard.placeMark(index, currentPlayer.marker);
-
         if (gameOver) {
             console.log("The game is over!");
             return;
         }
+
+        const success = Gameboard.placeMark(index, currentPlayer.marker);
 
         if (!success) {
             console.log("That square is already taken!");
@@ -157,10 +141,43 @@ const GameController = (() => {
 
 })();
 
-GameController.playRound(0); // X
-GameController.playRound(3); // O
-GameController.playRound(1); // X
-GameController.playRound(4); // O
-GameController.playRound(2); // X
+// DisplayController
+const DisplayController = (() => {
 
-GameController.playRound(8);
+    const gameboardDiv = document.querySelector("#gameboard");
+
+    for (let i = 0; i < 9; i++) {
+
+        const square = document.createElement("div");
+
+        square.dataset.index = i;
+
+        square.addEventListener("click", () => {
+
+            GameController.playRound(Number(square.dataset.index));
+
+            render();
+
+        });
+
+        gameboardDiv.appendChild(square);
+
+    }
+
+    const boardsquares = document.querySelectorAll("#gameboard div");
+
+    const render = () => {
+
+        const board = Gameboard.getBoard();
+
+        for (let i = 0; i < board.length; i++) {
+
+            squares[i].textContent = board[i];
+
+        }
+
+    };
+
+    render();
+
+})();
