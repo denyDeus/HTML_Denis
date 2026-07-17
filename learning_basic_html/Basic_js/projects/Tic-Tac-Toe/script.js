@@ -41,15 +41,29 @@ const Gameboard = (() => {
 // GameController Module
 const GameController = (() => {
 
-    const players = [
-        Player("Denis", "X"),
-        Player("John", "O")
-    ];
+    let players = [];
 
     let gameOver = false;
     let winner = null;
 
     let currentPlayer = players[0];
+
+    const startGame = (playerOneName, playerTwoName) => {
+
+        players = [
+            Player(playerOneName, "X"),
+            Player(playerTwoName, "O")
+        ];
+
+        currentPlayer = players[0];
+
+        winner = null;
+
+        gameOver = false;
+
+        Gameboard.resetBoard();
+
+    };
 
     const winningCombinations = [
         [0, 1, 2],
@@ -103,6 +117,11 @@ const GameController = (() => {
 
     const playRound = (index) => {
 
+        if (!currentPlayer) {
+            console.log("Start the game first!");
+            return false;
+        }
+
         if (gameOver) {
             console.log("The game is over!");
             return;
@@ -136,6 +155,8 @@ const GameController = (() => {
         }
 
         switchPlayerTurn();
+
+        return true;
     };
 
     const isGameOver = () => gameOver;
@@ -160,7 +181,8 @@ const GameController = (() => {
         playRound,
         isGameOver,
         getWinner,
-        restartGame
+        restartGame,
+        startGame
     };
 
 })();
@@ -183,9 +205,13 @@ const DisplayController = (() => {
 
         square.addEventListener("click", () => {
 
-            GameController.playRound(Number(square.dataset.index));
+           const movePlayed = GameController.playRound(
+                Number(square.dataset.index)
+           );
 
+           if (movePlayed) {
             refreshDisplay();
+           }
 
         });
 
@@ -211,10 +237,14 @@ const DisplayController = (() => {
 
     const updateStatus = () => {
 
+        const currentPlayer = GameController.getCurrentPlayer();
+
+        if (!currentPlayer) {
+            status.textContent = "Enter player names and click start Game.";
+            return;
+        }
+
         if (!GameController.isGameOver()) {
-
-            const currentPlayer = GameController.getCurrentPlayer();
-
             status.textContent =
                 `Current Player: ${currentPlayer.name} (${currentPlayer.marker})`;
 
@@ -237,6 +267,26 @@ const DisplayController = (() => {
     restartButton.addEventListener("click", () => {
 
         GameController.restartGame();
+
+        refreshDisplay();
+
+    });
+
+    const playerOneInput = document.querySelector("#player1");
+    const playerTwoInput = document.querySelector("#player2");
+
+    const startButton = document.querySelector("#start-game");
+
+    startButton.addEventListener("click", () => {
+
+        const playerOneName = playerOneInput.value.trim() || "Player X";
+
+        const playerTwoName = playerTwoInput.value.trim() || "Player O";
+
+        GameController.startGame(
+            playerOneName,
+            playerTwoName
+        );
 
         refreshDisplay();
 
