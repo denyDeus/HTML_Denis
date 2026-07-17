@@ -142,12 +142,25 @@ const GameController = (() => {
 
     const getWinner = () => winner;
 
+    const restartGame = () => {
+
+        Gameboard.resetBoard();
+
+        currentPlayer = players[0];
+
+        winner = null;
+
+        gameOver = false;
+
+    };
+
     return {
         getCurrentPlayer,
         switchPlayerTurn,
         playRound,
         isGameOver,
-        getWinner
+        getWinner,
+        restartGame
     };
 
 })();
@@ -156,6 +169,11 @@ const GameController = (() => {
 const DisplayController = (() => {
 
     const gameboardDiv = document.querySelector("#gameboard");
+
+    const refreshDisplay = () => {
+        render();
+        updateStatus();
+    };
 
     for (let i = 0; i < 9; i++) {
 
@@ -167,8 +185,7 @@ const DisplayController = (() => {
 
             GameController.playRound(Number(square.dataset.index));
 
-            render();
-            updateStatus();
+            refreshDisplay();
 
         });
 
@@ -215,7 +232,16 @@ const DisplayController = (() => {
 
     };
 
-    render();
-    updateStatus();
+    const restartButton = document.querySelector("#restart");
+
+    restartButton.addEventListener("click", () => {
+
+        GameController.restartGame();
+
+        refreshDisplay();
+
+    });
+
+    refreshDisplay();
 
 })();
