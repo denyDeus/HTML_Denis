@@ -44,7 +44,9 @@ const GameController = (() => {
     let players = [];
 
     let gameOver = false;
+
     let winner = null;
+    let winningSquares = [];
 
     let currentPlayer = players[0];
 
@@ -99,12 +101,12 @@ const GameController = (() => {
                 board[a] === board[b] &&
                 board[a] === board[c]
             ) {
-                return true;
+                return combination;
             }
 
         }
 
-        return false;
+        return null;
 
     };
 
@@ -136,13 +138,18 @@ const GameController = (() => {
 
         console.log(Gameboard.getBoard());
 
-        if (checkWinner()) {
+        const winningCombination = checkWinner();
+
+        if (winningCombination) {
+
+            winningSquares = winningCombination;
             winner = currentPlayer;
+
             gameOver = true;
 
             console.log(`${currentPlayer.name} wins!`);
 
-            return;
+            return true;
         }
 
         if (checkTie()) {
@@ -163,6 +170,8 @@ const GameController = (() => {
 
     const getWinner = () => winner;
 
+    const getWinningSquares = () => winningSquares;
+
     const restartGame = () => {
 
         Gameboard.resetBoard();
@@ -181,6 +190,7 @@ const GameController = (() => {
         playRound,
         isGameOver,
         getWinner,
+        getWinningSquares,
         restartGame,
         startGame
     };
@@ -227,7 +237,19 @@ const DisplayController = (() => {
 
         for (let i = 0; i < board.length; i++) {
 
-            boardSquares[i].textContent = board[i];
+            const square = boardSquares[i]
+
+            square.textContent = board[i];
+
+            square.classList.remove("x", "o");
+
+            if (board[i] === "X") {
+                square.classList.add("x");
+            }
+
+            if (board[i] === "O") {
+                square.classList.add("o");
+            }
 
         }
 

@@ -9,33 +9,35 @@
 </head>
 <body>
 
-    <h1>Tic Tac Toe</h1>
+    <div class="container">
 
-    <div id="player-setup">
+        <h1>Tic Tac Toe</h1>
 
-        <input 
-            type="text"
-            id="player1"
-            placeholder="Player X Name"
-        >
+        <div id="player-setup">
 
-        <input 
-            type="text"
-            id="player2"
-            placeholder="Player O Name"
-        >
+            <input 
+                id="player1"
+                placeholder="Player X Name">
 
-        <button id="start-game">
-            Start Game
+            <input 
+                id="player2"
+                placeholder="Player O Name">
+
+            <button id="start-game">
+                Start Game
+            </button>
+
+        </div>
+
+        <p id="status"></p>
+
+        <div id="gameboard"></div>
+
+        <button id="restart">
+            Restart
         </button>
-
+        
     </div>
-
-    <p id="status"></p>
-
-    <div id="gameboard"></div>
-
-    <button id="restart">Restart</button>
 
     <script src="script.js"></script>
 
