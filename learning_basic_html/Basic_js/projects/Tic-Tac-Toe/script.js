@@ -60,6 +60,7 @@ const GameController = (() => {
         currentPlayer = players[0];
 
         winner = null;
+        winningSquares = [];
 
         gameOver = false;
 
@@ -179,6 +180,7 @@ const GameController = (() => {
         currentPlayer = players[0];
 
         winner = null;
+        winningSquares = [];
 
         gameOver = false;
 
@@ -235,13 +237,15 @@ const DisplayController = (() => {
 
         const board = Gameboard.getBoard();
 
+        const winningSquares = GameController.getWinningSquares();
+
         for (let i = 0; i < board.length; i++) {
 
-            const square = boardSquares[i]
+            const square = boardSquares[i];
 
             square.textContent = board[i];
 
-            square.classList.remove("x", "o");
+            square.classList.remove("x", "o", "winner");
 
             if (board[i] === "X") {
                 square.classList.add("x");
@@ -249,6 +253,10 @@ const DisplayController = (() => {
 
             if (board[i] === "O") {
                 square.classList.add("o");
+            }
+
+            if (winningSquares.includes(i)) {
+                square.classList.add("winner");
             }
 
         }

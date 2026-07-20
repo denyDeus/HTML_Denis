@@ -150,3 +150,20 @@ button:active {
 .o {
     color: #dc2626;
 }
+
+.winner {
+    background: #22c55e;
+    color: white !important;
+    animation: winnerGlow .8s ease-in-out infinite alternate;
+}
+
+@keyframes winnerGlow {
+    from {
+        background: #22c55e;
+    }
+
+    to {
+        background: #16a34a;
+        box-shadow: 0 0 18px rgba(34, 197, 94, .8);
+    }
+}
