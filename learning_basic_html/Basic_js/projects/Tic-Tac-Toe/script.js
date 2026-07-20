@@ -245,14 +245,14 @@ const DisplayController = (() => {
 
             square.textContent = board[i];
 
-            square.classList.remove("x", "o", "winner");
+            square.classList.remove("x", "o", "winner", "placed");
 
             if (board[i] === "X") {
-                square.classList.add("x");
+                square.classList.add("x", "placed");
             }
 
             if (board[i] === "O") {
-                square.classList.add("o");
+                square.classList.add("o", "placed");
             }
 
             if (winningSquares.includes(i)) {
