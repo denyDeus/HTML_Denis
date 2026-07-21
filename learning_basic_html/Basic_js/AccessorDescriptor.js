@@ -1,3 +1,4 @@
+// To create an accessor fullName with defineProperty, we can pass a descriptor with get and set.
 let user = {
     name: "Denis",
     surname: "Luanda"
